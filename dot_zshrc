@@ -20,3 +20,9 @@ unset __conda_setup
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
 	eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/rudolfs-dark.omp.json)"
 fi
+
+#Aliases
+alias chez chezmoi
+
+#vi mode for zsh
+bindkey -v
