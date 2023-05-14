@@ -1,6 +1,8 @@
+source ~/.secrets
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/sbin:$PATH
 export PATH=/opt/homebrew/sbin:$PATH
+
 #export Path=/Users/kh/Library/Application Support/JetBrains/Toolbox/scripts:PATH
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -22,7 +24,24 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
 fi
 
 #Aliases
-alias chez chezmoi
+alias ll='ls -la'
+alias chez="chezmoi"
+alias vim="nvim"
+alias ai="chatblade"
+
+#Some prompt primers for chatblade
+#export shell="Convert the following natural language request to zsh code do not include anything other than the commands:"
 
 #vi mode for zsh
 bindkey -v
+
+#Weird Mac Settings to disable
+defaults write -g ApplePressAndHoldEnabled -bool false
+
+#Setup SSH keys
+sshKeyPath="$HOME/.ssh/id_rsa"
+
+if [ ! -f "$sshKeyPath" ]; then
+    ssh-keygen -t rsa -b 4096 -f "$sshKeyPath"
+fi
+
