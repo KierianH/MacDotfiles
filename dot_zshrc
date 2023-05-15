@@ -28,6 +28,13 @@ alias ll='ls -la'
 alias chez="chezmoi"
 alias vim="nvim"
 alias ai="chatblade"
+#Alias for publishing dotnet
+alias publish-linux="dotnet publish -c Release --self-contained true -r linux-x64 --output ./Release/linux-x64 --framework net7.0 /p:PublishSingleFile=true /p:PublishTrimmed=true"
+alias publish-macos="dotnet publish -c Release --self-contained true -r osx-x64 --output ./Release/macos-x64 --framework net7.0 /p:PublishSingleFile=true /p:PublishTrimmed=true"
+alias publish-windows="dotnet publish -c Release --self-contained true -r win-x64 --output ./Release/windows-x64 --framework net7.0 /p:PublishSingleFile=true /p:PublishTrimmed=true"
+alias publish-macos-arm="dotnet publish -c Release --self-contained true -r osx-arm64 --output ./Release/macos-arm64 --framework net7.0 /p:PublishSingleFile=true /p:PublishTrimmed=true"
+alias publish-linux-arm="dotnet publish -c Release --self-contained true -r linux-arm64 --output ./Release/linux-arm64 --framework net7.0 /p:PublishSingleFile=true /p:PublishTrimmed=true"
+
 
 #Some prompt primers for chatblade
 #export shell="Convert the following natural language request to zsh code do not include anything other than the commands:"
