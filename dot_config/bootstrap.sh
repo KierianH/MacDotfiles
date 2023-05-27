@@ -13,6 +13,7 @@ brew install ripgrep
 brew install lf
 brew install neovim
 brew install go
+brew install rust
 brew install htop
 brew install chatblade
 brew install chezmoi
@@ -30,4 +31,28 @@ brew install --cask amethyst
 brew install --cask the-unarchiver
 #Maybe
 #brew install rtorrent
-#
+
+# Configure git
+git config --global user.name "Kierian"
+git config --global user.email "kierianheffron25@gmail.com"
+
+# Configure ssh
+ssh-keygen -t rsa -b 4096 -C "kierianheffron25@gmail.com"
+
+# Ensure ~/.config/chezmoi exists
+if [[ ! -d ~/.config/chezmoi ]]; then
+    mkdir -p ~/.config/chezmoi
+fi
+
+# Create chezmoi.toml
+cat << EOF > ~/.config/chezmoi/chezmoi.toml
+[git]
+autoCommit = true
+autoPush = true
+EOF
+
+#Cargo Packages
+cargo install thokr
+
+#Clone Dotfiles
+chezmoi init --apply --verbose https://github.com/KierianH/MacDotfiles.git
