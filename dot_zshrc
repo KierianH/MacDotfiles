@@ -40,6 +40,7 @@ alias ll='ls -la'
 alias chez="chezmoi"
 alias vim="nvim"
 alias ai="chatblade"
+alias lf="lfcd"
 #Alias for publishing dotnet
 alias publish-linux="dotnet publish -c Release --self-contained true -r linux-x64 --output ./Release/linux-x64 --framework net7.0 /p:PublishSingleFile=true /p:PublishTrimmed=true"
 alias publish-macos="dotnet publish -c Release --self-contained true -r osx-x64 --output ./Release/macos-x64 --framework net7.0 /p:PublishSingleFile=true /p:PublishTrimmed=true"
@@ -63,3 +64,37 @@ sshKeyPath="$HOME/.ssh/id_rsa"
 if [ ! -f "$sshKeyPath" ]; then
     ssh-keygen -t rsa -b 4096 -f "$sshKeyPath"
 fi
+# change dir on lf exit
+lfcd () {
+    tmp="$(mktemp)"
+    # `command` is needed in case `lfcd` is aliased to `lf`
+    command lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}
+
+#LF Paste progress bar
+cmd paste &{{
+    set -- $(cat ~/.local/share/lf/files)
+    mode="$1"
+    shift
+    case "$mode" in
+        copy)
+            rsync -av --ignore-existing --progress -- "$@" . |
+            stdbuf -i0 -o0 -e0 tr '\r' '\n' |
+            while IFS= read -r line; do
+                lf -remote "send $id echo $line"
+            done
+            ;;
+        move) mv -n -- "$@" .;;
+    esac
+    rm ~/.local/share/lf/files
+    lf -remote "send clear"
+}}
