@@ -96,6 +96,9 @@ require('lazy').setup({
   {
     'ThePrimeagen/vim-be-good',
   },
+  {
+    'gboncoffee/lf.vim'
+  },
 
 
   { -- Set lualine as statusline
@@ -203,6 +206,7 @@ vim.o.undofile = true
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
+vim.o.cmdheight = 2
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
@@ -365,6 +369,10 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
+  -- These are for scrolling fast vertical and centered
+  vim.keymap.set("n", "<C-d>", "<C-d>zz")
+  vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
@@ -401,8 +409,9 @@ end
 local servers = {
   -- clangd = {},
   -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
+  pyright = {},
+  rust_analyzer = {},
+  omnisharp = {},
   -- tsserver = {},
 
   lua_ls = {

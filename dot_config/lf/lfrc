@@ -101,6 +101,12 @@ cmd copyPath &{{
     printf %s "$f" | pbcopy
 }}
 
+-- Command to copy current file path to the configuration file
+cmd append_path_qe ${{
+    echo "$f" >> ~/Scripts/QuickEdit/.qeList
+}}
+
+
 #search files with fzf and ripgrep
 cmd fzf_search ${{
     res="$( \
@@ -144,6 +150,7 @@ map at tar
 map e $nvim $f
 map . set hidden!
 map yy copyPath
+map yq append_path_qe
 map p paste
 map x cut
 map yf copy

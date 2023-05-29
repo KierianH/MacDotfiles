@@ -26,6 +26,7 @@ end
 cmdKeys = {
   {'cmd', 'f', '~/.hammerspoon/cmdScripts/run_lf.sh'},
   {'cmd', 't', '~/.hammerspoon/cmdScripts/run_thokr.sh'},
+  {'cmd', '`', '~/.hammerspoon/cmdScripts/run_qe.sh'},
   -- Add more commands here...
 }
 

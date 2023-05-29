@@ -41,7 +41,7 @@ alias chez="chezmoi"
 alias vim="nvim"
 alias ai="chatblade"
 alias lf="lfcd"
-alias qe="lua ~/Scripts/fzSelector/fzSelector.lua"
+alias qe="lua ~/Scripts/QuickEdit/qe.lua"
 #Alias for publishing dotnet
 alias publish-linux="dotnet publish -c Release --self-contained true -r linux-x64 --output ./Release/linux-x64 --framework net7.0 /p:PublishSingleFile=true /p:PublishTrimmed=true"
 alias publish-macos="dotnet publish -c Release --self-contained true -r osx-x64 --output ./Release/macos-x64 --framework net7.0 /p:PublishSingleFile=true /p:PublishTrimmed=true"
